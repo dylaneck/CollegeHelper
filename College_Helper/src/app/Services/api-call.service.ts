@@ -10,12 +10,11 @@ export class ApiCallService {
 
   incrementNumber(num: Number) {
     let url =
-      'https://rgmd7xcbmd.execute-api.us-west-1.amazonaws.com/api/increment/' + num;
+      'https://rgmd7xcbmd.execute-api.us-west-1.amazonaws.com/api/increment/' +
+      num;
 
     console.log(url);
 
-    return this.$http.get(url).subscribe((data) => {
-      console.log(data);
-    });
+    return this.$http.get(url);
   }
 }

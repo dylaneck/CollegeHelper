@@ -2,6 +2,15 @@
   <h1>Increment Card</h1>
 </div>
 <mat-card>
-    
+  <mat-card-header>
+    <mat-card-title>
+      <h2>Increment Card</h2>
+    </mat-card-title>
+  </mat-card-header>
+  <mat-card-content>
+    <input matInput type="number" [(ngModel)]="number" />
+  </mat-card-content>
+  <button mat-raised-button color="primary" (click)="increment()">
+    Increment
+  </button>
 </mat-card>
-<button (click)="increment()">Increment</button>
