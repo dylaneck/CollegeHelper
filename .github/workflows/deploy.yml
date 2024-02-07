@@ -19,7 +19,7 @@ jobs:
         run: npm install -g @angular/cli && npm install
 
       - name: Run build
-        run: ng build
+        run: ng build --base-href /College_Helper/
 
       - name: Upload Artifacts
         uses: actions/upload-artifact@v3
