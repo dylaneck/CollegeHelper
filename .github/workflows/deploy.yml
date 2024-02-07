@@ -16,7 +16,7 @@ jobs:
           node-version: "18"
 
       - name: Install packages and dependencies
-        run: npm install -g @angular/cli && npm install && npm install --save-dev @angular-devkit/build-angular
+        run: npm install -g @angular/cli @angular/material && npm install && npm install --save-dev @angular-devkit/build-angular
 
       - name: Run build
         run: cd College_Helper && npm run build && cd ..
