@@ -19,7 +19,7 @@ jobs:
         run: npm install -g @angular/cli && npm install
 
       - name: Run build
-        run: cd College_helper && ng build && cd ..
+        run: cd College_Helper && ng build && cd ..
 
       - name: Run build
         run: ng build
