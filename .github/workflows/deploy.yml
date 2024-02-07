@@ -16,7 +16,7 @@ jobs:
           node-version: "18"
 
       - name: Install packages and dependencies
-        run: npm install college-helper -g 
+        run: npm install -g 
 
       - name: Run build
         run: cd College_Helper && ng build && cd ..
