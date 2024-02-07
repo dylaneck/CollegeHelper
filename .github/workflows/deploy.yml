@@ -19,7 +19,7 @@ jobs:
         run: npm install -g @angular/cli && npm install && npm install --save-dev @angular-devkit/build-angular
 
       - name: Run build
-        run: cd College_Helper && ng build && cd ..
+        run: cd College_Helper && npm run build && cd ..
 
       - name: Upload Artifacts
         uses: actions/upload-artifact@v3
