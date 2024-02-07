@@ -1,71 +1,53 @@
-# Workflow name
-name: Continuous Deployment
+name: Deploying Angular App to S3 and CloudFront
 
-# This allows manual start of the pipeline as needed.
 on:
   push:
     branches:
-      - main
+      - "main"
 
-# The list of jobs to run 
 jobs:
-  build_and_deploy_job:
+  build:
+    name: Build Angular App
     runs-on: ubuntu-latest
-    name: Build and Deploy Job
     steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-node@v3
+        with:
+          node-version: "18"
 
-      # 1. Configure AWS Credentials      
-      - name: Configure AWS credentials
-        uses: aws-actions/configure-aws-credentials@v3
+      - name: Install packages and dependencies
+        run: npm install -g @angular/cli && npm install && npm install --save-dev @angular-devkit/build-angular
+
+      - name: Run build
+        run: cd College_Helper && ng build && cd ..
+
+      - name: Upload Artifacts
+        uses: actions/upload-artifact@v3
+        with:
+          name: artifacts
+          path: dist/college-helper/
+
+  deploy:
+    name: Development to S3 and CloudFront
+    needs: build
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+
+      - uses: actions/download-artifact@v3
+        with:
+          name: artifacts
+          path: dist/college-helper/
+
+      - uses: aws-actions/configure-aws-credentials@v2
         with:
           aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           aws-region: ${{ secrets.AWS_DEFAULT_REGION }}
           
-      # 2. Checkout Repository
-      - name: Checkout Repository
-        uses: actions/checkout@v3
-        with:
-          ref: main
-      
-      # 3. Setup Node
-      - name: Setup Node 
-        uses: actions/setup-node@v3
-        with:
-          node-version: '18'
+      - name: S3 Sync
+        run: aws s3 sync dist/college-helper/ s3://${{ secrets.S3_BUCKET }}
 
-          
-      # 4. Setup Cache
-      - name: Setup Cache
-        uses: actions/cache@v3
-        with:
-          path: ~/.npm
-          key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
-          restore-keys: |
-            ${{ runner.os }}-node-
-
-      # 5. Build Angular
-      - name: Build Angular
-        run: |
-          ls
-          npm install -g @angular/cli
-          npm install @angular-devkit/build-angular
-          npm install
-          cd College_Helper && npm run build && cd ..
-          
-      # 6. Copy to S3 Bucket
-      - name: Copy to S3 Bucket
-        run: |
-          aws s3 cp ./dist/* s3://${{ secrets.S3_BUCKET }}
-  
-          
-      # 7. (Optional) Invalidate CloudFront
-      - name: Invalidate CloudFront
-        run: |
-          aws cloudfront create-invalidation --distribution-id ${{ secrets.CLOUDFRONT_DISTRIBUTION_ID }} --paths "/*"
-
-          - uses: aws-actions/configure-aws-credentials@v2
-          with:
-            aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
-            aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-            aws-region: ${{ secrets.AWS_DEFAULT_REGION }}
+      - name: Cloudfront Invalidation
+        run: aws cloudfront create-invalidation --distribution-id ${{ secrets.CLOUDFRONT_DISTRIBUTION_ID }} --paths "/*"
