@@ -16,8 +16,8 @@ jobs:
           node-version: "18"
 
       - name: Install packages and dependencies
-        run: npm ci
-
+        run: npm ci && npm install yargs dotenv ts-node
+        
       - name: Run build
         run: cd College_Helper && npm run build && cd ..
 
