@@ -16,10 +16,10 @@ jobs:
           node-version: "18"
 
       - name: Install packages and dependencies
-        run: cd College_Helper && npm ci
+        run: cd College_Helper && npm ci && npm install
         
       - name: Run build
-        run: npm run build && cd ..
+        run: cd College_Helper && npm run build
 
       - name: Upload Artifacts
         uses: actions/upload-artifact@v3
