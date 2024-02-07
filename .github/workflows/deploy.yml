@@ -19,13 +19,16 @@ jobs:
         run: npm install -g @angular/cli && npm install
 
       - name: Run build
-        run: ng build --base-href /College_Helper/
+        run: cd College_helper && ng build && cd ..
+
+      - name: Run build
+        run: ng build
 
       - name: Upload Artifacts
         uses: actions/upload-artifact@v3
         with:
           name: artifacts
-          path: dist/github-angular-demo/
+          path: dist/college-helper/
 
   deploy:
     name: Development to S3 and CloudFront
@@ -38,7 +41,7 @@ jobs:
       - uses: actions/download-artifact@v3
         with:
           name: artifacts
-          path: dist/github-angular-demo/
+          path: dist/college-helper/
 
       - uses: aws-actions/configure-aws-credentials@v2
         with:
@@ -47,7 +50,7 @@ jobs:
           aws-region: ${{ secrets.AWS_DEFAULT_REGION }}
 
       - name: S3 Sync
-        run: aws s3 sync dist/github-angular-demo/ s3://${{ secrets.S3_BUCKET }}
+        run: aws s3 sync dist/college-helper/ s3://${{ secrets.S3_BUCKET }}
 
       - name: Cloudfront Invalidation
         run: aws cloudfront create-invalidation --distribution-id ${{ secrets.CLOUDFRONT_DISTRIBUTION_ID }} --paths "/*"
