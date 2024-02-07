@@ -1,7 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Observable } from 'rxjs';
-
+import { environment } from 'src/environments/environment.dev';
 @Injectable({
   providedIn: 'root',
 })
@@ -9,9 +8,7 @@ export class ApiCallService {
   constructor(private $http: HttpClient) {}
 
   incrementNumber(num: Number) {
-    let url =
-      'https://rgmd7xcbmd.execute-api.us-west-1.amazonaws.com/api/increment/' +
-      num;
+    let url = environment.API_URL + '/increment/' + num;
 
     console.log(url);
 
