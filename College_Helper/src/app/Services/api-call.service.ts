@@ -10,8 +10,6 @@ export class ApiCallService {
   incrementNumber(num: Number) {
     let url = API.API_URL + '/increment/' + num;
 
-    console.log(url);
-
     return this.$http.get(url);
   }
 }
