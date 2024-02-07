@@ -49,6 +49,7 @@ jobs:
         run: |
           ls
           npm install -g @angular/cli
+          npm install @angular-devkit/build-angular
           npm install
           cd College_Helper && npm run build && cd ..
           
