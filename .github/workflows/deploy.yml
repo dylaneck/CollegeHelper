@@ -16,7 +16,7 @@ jobs:
           node-version: "18"
 
       - name: Install packages and dependencies
-        run: cd College_Helper && npm ci && npm install --save -g ts-node && npm install --save @angular-devkit/build-angular yargs dotenv && npm install
+        run: cd College_Helper && npm ci && npm install -g @angular/material @angular/cdk @angular/animations
         
       - name: Run build
         run: cd College_Helper && npm run build
