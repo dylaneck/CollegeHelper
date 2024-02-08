@@ -8,8 +8,7 @@ export class ApiCallService {
   constructor(private $http: HttpClient) {}
 
   incrementNumber(num: Number) {
-    console.log(environment);
-    let url = environment.API_URL + '/increment/' + num;
+    let url = 'https://rgmd7xcbmd.execute-api.us-west-1.amazonaws.com/api/' + '/increment/' + num;
 
     console.log(url);
 
