@@ -5,12 +5,13 @@ import { CollegeSearchPageComponent } from './Components/college-search-page/col
 import { PageNotFoundComponent } from './Components/page-not-found/page-not-found.component';
 import { LoginPageComponent } from './Components/login-page/login-page.component';
 import { RegisterPageComponent } from './Components/register-page/register-page.component';
+import { IncrementCardComponent } from './Components/increment-card/increment-card.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/home', pathMatch: 'full' },
   {
     path: 'home',
-    component: CollegeSearchPageComponent,
+    component: IncrementCardComponent,
     canActivate: [loginGuard],
   },
   {
