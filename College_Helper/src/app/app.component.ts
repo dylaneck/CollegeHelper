@@ -9,9 +9,11 @@ import { ApiCallService } from './Services/api-call.service';
 export class AppComponent implements OnInit {
   title = 'College_Helper';
 
-  constructor(private apiCallService: ApiCallService) {}
+  constructor() {}
 
-  ngOnInit() {}
+  ngOnInit() {
+    this.setTheme();
+  }
 
   setTheme() {
     const theme = localStorage.getItem('theme');
