@@ -39,12 +39,12 @@
       </p>
       <mat-card-actions>
         <!-- align clear button to the left -->
-        <button type="reset" mat-button [disabled]="form.pristine">
+        <button type="reset" mat-raised-button [disabled]="form.pristine">
           Clear
         </button>
         <span class="fill-remaining-space"></span>
-        <button type="button" mat-button (click)="register()">Register</button>
-        <button type="submit" mat-button [disabled]="form.invalid">
+        <button type="button" mat-raised-button color="primary" disabled=true (click)="register()">Register</button>
+        <button mat-raised-button color="primary" type="submit" [disabled]="form.invalid">
           Login
         </button>
       </mat-card-actions>

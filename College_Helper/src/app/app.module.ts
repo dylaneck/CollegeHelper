@@ -17,6 +17,7 @@ import { PageNotFoundComponent } from './Components/page-not-found/page-not-foun
 import { MatDialogModule } from '@angular/material/dialog';
 import { RegisterPageComponent } from './Components/register-page/register-page.component';
 import { MatStepperModule } from '@angular/material/stepper';
+import { MatButtonModule } from '@angular/material/button';
 
 @NgModule({
   declarations: [
@@ -42,6 +43,7 @@ import { MatStepperModule } from '@angular/material/stepper';
     ReactiveFormsModule,
     MatDialogModule,
     MatStepperModule,
+    MatButtonModule
   ],
   providers: [ApiCallService, provideHttpClient()],
   bootstrap: [AppComponent],

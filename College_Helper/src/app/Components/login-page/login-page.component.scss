@@ -17,6 +17,11 @@ mat-card-actions {
   justify-content: flex-end;
 }
 
+// buttons
+button {
+  margin: 5px;
+}
+
 .fill-remaining-space {
   flex: 1 1 auto;
 }

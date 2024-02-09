@@ -14,11 +14,11 @@ export class ApiCallService {
 
   checkIfUserIsLoggedIn() {
     const user = localStorage.getItem('user');
-    return user ? true : false;
+    return this.login(user ? user : '', 'admin');
   }
 
   login(username: string, password: string): boolean {
-    if (username === 'admin' && password === 'admin') {
+    if (username === 'admin@admin.com' && password === 'admin') {
       localStorage.setItem('user', username);
       return true;
     }
