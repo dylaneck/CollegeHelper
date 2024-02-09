@@ -7,11 +7,27 @@ import { AppComponent } from './app.component';
 import { ApiCallService } from './Services/api-call.service';
 import { HttpClient, provideHttpClient } from '@angular/common/http';
 import { IncrementCardComponent } from './Components/increment-card/increment-card.component';
-import { MatCardModule } from '@angular/material/card';
-import { MatInputModule } from '@angular/material/input';
-import { FormsModule } from '@angular/forms';
+import { MatCardActions, MatCardModule } from '@angular/material/card';
+import { MatInput, MatInputModule } from '@angular/material/input';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { LoginPageComponent } from './Components/login-page/login-page.component';
+import { CollegeSearchPageComponent } from './Components/college-search-page/college-search-page.component';
+import { PageNotFoundComponent } from './Components/page-not-found/page-not-found.component';
+import { MatDialogModule } from '@angular/material/dialog';
+import { RegisterPageComponent } from './Components/register-page/register-page.component';
+import { MatStepperModule } from '@angular/material/stepper';
+import { MatButtonModule } from '@angular/material/button';
+
 @NgModule({
-  declarations: [AppComponent, IncrementCardComponent],
+  declarations: [
+    AppComponent,
+    IncrementCardComponent,
+    LoginPageComponent,
+    CollegeSearchPageComponent,
+    PageNotFoundComponent,
+    RegisterPageComponent,
+  ],
   imports: [
     BrowserModule,
     CommonModule,
@@ -19,6 +35,15 @@ import { FormsModule } from '@angular/forms';
     MatCardModule,
     MatInputModule,
     FormsModule,
+    MatCardModule,
+    MatInputModule,
+    MatFormFieldModule,
+    MatCardActions,
+    MatInput,
+    ReactiveFormsModule,
+    MatDialogModule,
+    MatStepperModule,
+    MatButtonModule
   ],
   providers: [ApiCallService, provideHttpClient()],
   bootstrap: [AppComponent],
