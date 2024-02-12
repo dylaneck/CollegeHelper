@@ -12,7 +12,6 @@ export class IncrementCardComponent {
   constructor(private apiCallService: ApiCallService) {}
 
   increment() {
-    console.log('clicked!');
     this.apiCallService.incrementNumber(this.number).subscribe((data: any) => {
       this.number = data['result'];
     });
