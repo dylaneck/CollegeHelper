@@ -6,6 +6,7 @@ import { PageNotFoundComponent } from './Components/page-not-found/page-not-foun
 import { LoginPageComponent } from './Components/login-page/login-page.component';
 import { RegisterPageComponent } from './Components/register-page/register-page.component';
 import { IncrementCardComponent } from './Components/increment-card/increment-card.component';
+import {JsonIncrementComponent} from './Components/json-increment/json-increment.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/home', pathMatch: 'full' },
@@ -24,6 +25,8 @@ const routes: Routes = [
   },
   { path: '**', redirectTo: '/404', pathMatch: 'full' },
   { path: '404', component: PageNotFoundComponent },
+  
+  { path: 'json-increment', component: JsonIncrementComponent },
 ];
 
 @NgModule({

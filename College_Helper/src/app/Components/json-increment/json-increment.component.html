@@ -1,0 +1,8 @@
+<form #jsonForm="ngForm" (ngSubmit)="parseJson()">
+    <textarea name="jsonData" [(ngModel)]="jsonData" required></textarea>
+    <button type="submit">Parse JSON</button>
+  </form>
+
+  <div *ngIf="parsedPeople">
+    <p>{{person.name}} will be {{person.age}}</p>
+  </div>
