@@ -9,11 +9,6 @@ import { Observable } from 'rxjs';
 export class peopleService {
   constructor(private http: HttpClient) {}
 
-  // Method to fetch JSON data from file
-  getPeopleData(): Observable<any> {
-    return this.http.get('assets/people.json');
-  }
-
   incrementAges(people: any[]): void {
     people.forEach(person => {
       person.age++;
